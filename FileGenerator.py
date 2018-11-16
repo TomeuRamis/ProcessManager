@@ -1,6 +1,8 @@
 import json
+import os
 
-path = "Files/Requests/"
+abspath = os.getcwd()
+path = abspath+"/Files/Requests/"
 file = "request"
 extension = ".json"
 
@@ -11,9 +13,10 @@ def generateNewRequests():
         f = open(path+file+str(i)+extension, "w")
         process = {"id": i,
                    "type": "fibonacci",
-                   "pid": 0,
+                   "pid": None,
                    "started": False,
                    "finished": False}
         json.dump(process, f)
         #f.write(process) #llibreria jason
         f.close()
+    print("\n")
