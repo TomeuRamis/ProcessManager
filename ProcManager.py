@@ -13,6 +13,7 @@ logging.basicConfig(filename='example.log',
                     format='[%(asctime)s] %(levelname)s: %(message)s',
                     datefmt='%d/%m/%Y %H:%M:%S')
 
+
 def checkForRequests():
     try:
         for i, file in enumerate(os.listdir(pathReq)):
@@ -20,7 +21,7 @@ def checkForRequests():
             f = open(pathReq + file, "r")
             # Reads a string and transforms it to a Dictionary
             request = json.load(f)
-            # Avaluate the type of process requested
+            # Evaluate the type of process requested
             if request["type"] == "fibonacci":
                 arg1 = str(30)
                 arg2 = "Results/" + file
@@ -28,8 +29,9 @@ def checkForRequests():
                 cmdFib = ["python", os.getcwd() + code, arg1, arg2]
 
             if request["type"] == "wait":
+                arg1 = str(20)
                 code = "/wait.py"
-                cmdFib = ["python", os.getcwd() + code]
+                cmdFib = ["python", os.getcwd() + code, arg1]
 
             subp = subprocess.Popen(cmdFib)
             pid = subp.pid
@@ -53,7 +55,7 @@ def checkForFinishedProcesses():
             f = open(pathInProg + file, "r")
             process = json.load(f)
 
-            # Chech if the process is running
+            # Check if the process is running
             finished = False
             try:
                 os.kill(process["pid"], 0)

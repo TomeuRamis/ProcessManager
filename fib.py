@@ -23,5 +23,5 @@ if len(sys.argv)>0:
     print("\tDone")
 else:
     print ("Nothing to do")
-    f = open(sys.argv[2],"w")
+    f = open(sys.argv[2], "w")
     f.close()
